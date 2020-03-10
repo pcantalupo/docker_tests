@@ -13,5 +13,5 @@ if [[ ! -f test-data.tar.gz ]]; then
     wget http://www.bcgsc.ca/platform/bioinfo/software/abyss/releases/1.3.4/test-data.tar.gz
 fi
 tar -xvzf test-data.tar.gz 
-docker run --rm -v$(pwd)/test-data:/data pegi3s/fastqc:"$VER" /data/reads1.fastq /data/reads2.fastq
+docker run --rm -v$(pwd)/test-data:/data pegi3s/fastqc:"$VER" /data/reads1_cutadapt.fastq /data/reads2_cutadapt.fastq
 ls -l test-data/*fastqc*
