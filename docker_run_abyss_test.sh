@@ -9,11 +9,15 @@
 set -euox pipefail
 
 VER=${1-latest}
-wget http://www.bcgsc.ca/platform/bioinfo/software/abyss/releases/1.3.4/test-data.tar.gz
+OUTDIR=abyss_assembly
+
+if [[ ! -f test-data.tar.gz ]]; then
+    wget http://www.bcgsc.ca/platform/bioinfo/software/abyss/releases/1.3.4/test-data.tar.gz
+fi
 tar -xvzf test-data.tar.gz 
-mkdir -p results
-docker run --rm -v$(pwd):/data pegi3s/abyss:"$VER" abyss-pe k=25 name=test in='/data/test-data/reads1.fastq /data/test-data/reads2.fastq' --directory=/data/results
+mkdir -p $OUTDIR
+docker run --rm -v$(pwd):/data pegi3s/abyss:"$VER" abyss-pe k=25 name=test in='/data/test-data/reads1.fastq /data/test-data/reads2.fastq' --directory=/data/$OUTDIR
 echo
 echo ------------------------------------------
 echo Final contigs file is here...
-ls -l results/test-contigs.fa
+ls -l $OUTDIR/test-contigs.fa
