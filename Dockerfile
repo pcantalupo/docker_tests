@@ -46,4 +46,5 @@ RUN tar xvzf test-data.tar.gz
 
 COPY scripts/onion_pipeline.sh .
 
-ENTRYPOINT ["/onion_pipeline.sh"]
+#ENTRYPOINT ["/onion_pipeline.sh"]
+CMD ["/onion_pipeline.sh"]

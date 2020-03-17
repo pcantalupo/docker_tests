@@ -1,4 +1,5 @@
 abyss_assembly/
-results/
+results*/
 testing/
 test/
+*.out
